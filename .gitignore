@@ -5,3 +5,4 @@ sam_vit_h_4b8939.pth
 proj_earn_gsv/Dataset.zip
 proj_earn_gsv/Config.csv
 proj_earn_gsv/key.py
+proj_earn_gsv/best_fe071.pt
