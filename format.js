@@ -39,3 +39,38 @@ chart.setOptions({
 });
 
 print(chart);
+
+SELECT * FROM users WHERE username = 'input_username' AND password = 'input_password';
+
+
+connection.connect();
+
+const input_username = "admin' OR '1'='1";
+const input_password = "anything";
+
+const query = `SELECT * FROM users WHERE username = '${input_username}' AND password = '${input_password}'`;
+
+connection.query(query, (error, results, fields) => {
+    if (error) throw error;
+    console.log(results);
+});
+
+connection.end();
+
+
+
+
+
+connection.connect();
+
+const input_username = "admin' OR '1'='1";
+const input_password = "anything";
+
+const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
+
+connection.query(query, [input_username, input_password], (error, results, fields) => {
+    if (error) throw error;
+    console.log(results);
+});
+
+connection.end();
