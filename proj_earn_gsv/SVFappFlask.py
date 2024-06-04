@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import requests
 import base64
 import json
@@ -258,14 +258,27 @@ def getByLatLong():
     # return json.dumps(res['tree'])
 
 
-@app.route('/hello', methods=['GET'])
-def hello():
+@app.route('/hi', methods=['GET'])
+def hi():
     a = os.getcwd()
     return json.dumps({'hello': a})
 
 
+# @app.route('/hello/', methods=['GET'])
+@app.route('/', methods=['GET'])
+def hello():
+    directory = 'public'
+    filename = 'index.html'
+
+    try:
+        return send_from_directory(directory, filename)
+    except FileNotFoundError:
+        print('File not found')
+
+
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
+
 
 # how to call the API
 # http://localhost:5000/getByLatLong?lat=18.80322604063747&lon=98.95020624026014

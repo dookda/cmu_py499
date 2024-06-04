@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="pastel">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+</head>
+
+<style>
+    #map {
+        height: 480px;
+    }
+</style>
+
+<body>
+    <div class="container mx-auto">
+        <div class="navbar bg-base-300">
+            <a class="btn btn-ghost text-xl">daisyUI</a>
+        </div>
+        <div class="card card-compact  bg-base-200 ">
+            <div class="card-body" id="map">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+    var map = L.map('map').setView([18.80283281138099, 98.95007522732884], 18);
+
+    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    })
+
+    var google = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+
+    var baseLayers = {
+        "OSM": osm,
+        "Google": google.addTo(map)
+    };
+
+    L.control.layers(baseLayers).addTo(map);
+
+    var marker = L.marker();
+    const showMarker = async (lat, lng) => {
+        const api = `/getByLatLong?lat=${lat}&lon=${lng}`;
+        try {
+            const response = await fetch(api);
+            const data = await response.json();
+            const img = `<img src="data:image/jpg;base64,${data.img}" alt="" width="500">`
+            // console.log(data);
+            if (data == null) {
+                return;
+            }
+            marker = L.marker([lat, lng]).addTo(map)
+                .bindPopup(`</br>${img}
+                            </br>sky: ${data.sky}
+                            </br>tree: ${data.tree}
+                            </br>building: ${data.building}`,
+                    { maxWidth: 560 })
+                .openPopup();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    map.on('click', function (e) {
+        showMarker(e.latlng.lat, e.latlng.lng);
+    });
+
+    marker.on('click', function (e) {
+        console.log(e);
+    });
+</script>
+
+</html>
