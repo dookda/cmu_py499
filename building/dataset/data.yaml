@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 2
+names: ['Building', 'Vegetation']
+
+roboflow:
+  workspace: awandhana-a--a-
+  project: spatial-programming_finals
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/awandhana-a--a-/spatial-programming_finals/dataset/1
