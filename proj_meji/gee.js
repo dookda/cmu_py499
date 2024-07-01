@@ -89,7 +89,7 @@ function showChart(usc, param, name) {
     chartPanel.add(scatterChart);
 }
 
-function showCorrelation(property1, property2) {
+function showCorrelationOld(property1, property2) {
     var array1 = ee.Array(property1);
     var array2 = ee.Array(property2);
 
@@ -110,6 +110,75 @@ function showCorrelation(property1, property2) {
     var correUi = ui.Label('Correlation:' + correlation)
     chartPanel.add(correUi);
 }
+
+function showCorrelation(property1, property2) {
+    var array1 = ee.Array(property1);
+    var array2 = ee.Array(property2);
+
+    var mean1 = array1.reduce(ee.Reducer.mean(), [0]).get([0]);
+    var mean2 = array2.reduce(ee.Reducer.mean(), [0]).get([0]);
+
+    var deviation1 = array1.subtract(mean1);
+    var deviation2 = array2.subtract(mean2);
+
+    var covariance = deviation1.multiply(deviation2).reduce(ee.Reducer.sum(), [0]).get([0]);
+
+    var variance1 = deviation1.pow(2).reduce(ee.Reducer.sum(), [0]).get([0]);
+    var variance2 = deviation2.pow(2).reduce(ee.Reducer.sum(), [0]).get([0]);
+
+    var correlation = covariance.divide(variance1.multiply(variance2).sqrt());
+
+    // Calculate regression slope and intercept
+    var slope = covariance.divide(variance1);
+    var intercept = mean2.subtract(slope.multiply(mean1));
+
+    // Create the regression line points
+    var minX = array1.reduce(ee.Reducer.min(), [0]).get([0]);
+    var maxX = array1.reduce(ee.Reducer.max(), [0]).get([0]);
+    var minY = slope.multiply(minX).add(intercept);
+    var maxY = slope.multiply(maxX).add(intercept);
+
+    // Print the correlation and regression info
+    var correUi = ui.Label('Correlation: ' + correlation.getInfo());
+    chartPanel.add(correUi);
+    var slopeUi = ui.Label('Slope: ' + slope.getInfo());
+    chartPanel.add(slopeUi);
+    var interceptUi = ui.Label('Intercept: ' + intercept.getInfo());
+    chartPanel.add(interceptUi);
+
+    // Create a chart
+    var scatterChart = ui.Chart.array.values({
+        array: ee.Array.cat([array1, array2], 1),
+        axis: 0
+    })
+        .setChartType('ScatterChart')
+        .setOptions({
+            title: 'Scatter Plot with Regression Line',
+            hAxis: { title: 'Property 1' },
+            vAxis: { title: 'Property 2' },
+            pointSize: 5,
+            series: {
+                0: { pointShape: 'circle', pointSize: 5 },
+                1: { pointShape: 'none', lineWidth: 2, color: 'red' } // Regression line
+            }
+        });
+
+    // Add regression line data
+    var regressionData = ee.Array.cat([
+        ee.Array([[minX, minY], [maxX, maxY]])
+    ], 1);
+
+    scatterChart = scatterChart.setSeries([
+        { series: { 0: 'circle' } },
+        { series: { 1: 'line' } }
+    ]);
+
+    scatterChart.setSeriesData(1, regressionData);
+
+    // Print the chart to the console
+    print(scatterChart);
+}
+
 
 function getcollection(startDate, endDate, weekNumber, year) {
     var selectValue = selectParams.getValue();
