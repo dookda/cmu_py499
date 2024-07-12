@@ -1,11 +1,11 @@
 {'type': 'Image', 'bands': [
-        {'id': 'NDVI', 'data_type': {'type': 'PixelType', 'precision': 'float', 'min': -1, 'max': 1
+        {'id': 'LST_Celsius', 'data_type': {'type': 'PixelType', 'precision': 'double', 'min': -273.15, 'max': 1037.5500000000002
             }, 'dimensions': [
-                164,
-                176
+                166,
+                177
             ], 'origin': [
-                4917,
-                -20867
+                4916,
+                -20868
             ], 'crs': 'EPSG: 32647', 'crs_transform': [
                 100,
                 0,
@@ -15,87 +15,30 @@
                 0
             ]
         }
-    ], 'version': 1720776074023234, 'id': 'COPERNICUS/S2_SR_HARMONIZED/20211105T034941_20211105T035710_T47QMA', 'properties': {
-        'date': '2021-11-05', 'day_name': 'Friday', 'system:footprint': {'type': 'Polygon', 'coordinates': [
+    ], 'version': 1658130408058844, 'id': 'MODIS/061/MOD11A1/2021_11_01', 'properties': {'date': '2021-11-01', 'day_name': 'Monday', 'system:footprint': {'geodesic': False, 'type': 'Polygon', 'coordinates': [
                 [
                     [
                         98.92145131982353,
-                        18.713941886258603
-                    ],
-                    [
-                        98.9408289075603,
-                        18.713941886258603
-                    ],
-                    [
-                        98.96020649529706,
-                        18.713941886258603
-                    ],
-                    [
-                        98.97958408303383,
-                        18.713941886258603
-                    ],
-                    [
-                        98.99896167077057,
-                        18.713941886258603
-                    ],
-                    [
-                        99.01833925850734,
-                        18.713941886258603
-                    ],
-                    [
-                        99.0377168462441,
-                        18.713941886258603
-                    ],
-                    [
-                        99.05709443398088,
-                        18.713941886258603
+                        18.713941886258606
                     ],
                     [
                         99.07647202171762,
-                        18.713941886258603
+                        18.713941886258606
                     ],
                     [
                         99.07647202171762,
-                        18.872106282744017
-                    ],
-                    [
-                        99.05709443398088,
-                        18.872106282744017
-                    ],
-                    [
-                        99.0377168462441,
-                        18.872106282744017
-                    ],
-                    [
-                        99.01833925850734,
-                        18.872106282744017
-                    ],
-                    [
-                        98.99896167077058,
-                        18.872106282744017
-                    ],
-                    [
-                        98.97958408303383,
-                        18.872106282744017
-                    ],
-                    [
-                        98.96020649529706,
-                        18.872106282744017
-                    ],
-                    [
-                        98.9408289075603,
-                        18.872106282744017
+                        18.872106282744014
                     ],
                     [
                         98.92145131982353,
-                        18.872106282744017
+                        18.872106282744014
                     ],
                     [
                         98.92145131982353,
-                        18.713941886258603
+                        18.713941886258606
                     ]
                 ]
             ]
-        }, 'day_of_week': 4, 'DATATAKE_IDENTIFIER': 'GS2A_20211105T034941_033277_N03.01', 'AOT_RETRIEVAL_ACCURACY': 0, 'SPACECRAFT_NAME': 'Sentinel-2A', 'SATURATED_DEFECTIVE_PIXEL_PERCENTAGE': 0, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B8A': 101.747965355345, 'CLOUD_SHADOW_PERCENTAGE': 2.95284, 'MEAN_SOLAR_AZIMUTH_ANGLE': 153.57273765311, 'VEGETATION_PERCENTAGE': 71.151227, 'SOLAR_IRRADIANCE_B12': 85.25, 'SOLAR_IRRADIANCE_B10': 367.15, 'SENSOR_QUALITY': 'PASSED', 'SOLAR_IRRADIANCE_B11': 245.59, 'GENERATION_TIME': 1636097747000, 'SOLAR_IRRADIANCE_B8A': 955.32, 'FORMAT_CORRECTNESS': 'PASSED', 'CLOUD_COVERAGE_ASSESSMENT': 19.199218, 'THIN_CIRRUS_PERCENTAGE': 5.62955, 'system:time_end': 1636084998824, 'WATER_VAPOUR_RETRIEVAL_ACCURACY': 0, 'system:time_start': 1636084998824, 'DATASTRIP_ID': 'S2A_OPER_MSI_L2A_DS_VGS4_20211105T073547_S20211105T035710_N03.01', 'PROCESSING_BASELINE': '03.01', 'SENSING_ORBIT_NUMBER': 104, 'NODATA_PIXEL_PERCENTAGE': 11.349455, 'SENSING_ORBIT_DIRECTION': 'DESCENDING', 'GENERAL_QUALITY': 'PASSED', 'GRANULE_ID': 'L2A_T47QMA_A033277_20211105T035710', 'REFLECTANCE_CONVERSION_CORRECTION': 1.01582609407628, 'MEDIUM_PROBA_CLOUDS_PERCENTAGE': 2.788001, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B8': 101.831040613279, 'DATATAKE_TYPE': 'INS-NOBS', 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B9': 101.800396706628, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B6': 101.773621085491, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B7': 101.765954291043, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B4': 101.78247747056, 'MEAN_INCIDENCE_ZENITH_ANGLE_B1': 8.10517617149719, 'NOT_VEGETATED_PERCENTAGE': 3.289341, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B5': 101.793957492238, 'RADIOMETRIC_QUALITY': 'PASSED', 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B2': 101.846497539041, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B3': 101.816178432081, 'MEAN_INCIDENCE_ZENITH_ANGLE_B5': 7.9899198620965, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B1': 101.813213848686, 'MEAN_INCIDENCE_ZENITH_ANGLE_B4': 7.96754749580355, 'MEAN_INCIDENCE_ZENITH_ANGLE_B3': 7.93389771225779, 'MEAN_INCIDENCE_ZENITH_ANGLE_B2': 7.90777943138332, 'MEAN_INCIDENCE_ZENITH_ANGLE_B9': 8.14104990646243, 'MEAN_INCIDENCE_ZENITH_ANGLE_B8': 7.91945540277491, 'MEAN_INCIDENCE_ZENITH_ANGLE_B7': 8.04213785596024, 'DARK_FEATURES_PERCENTAGE': 0.341797, 'HIGH_PROBA_CLOUDS_PERCENTAGE': 10.781667, 'MEAN_INCIDENCE_ZENITH_ANGLE_B6': 8.01473038785138, 'UNCLASSIFIED_PERCENTAGE': 2.992721, 'MEAN_SOLAR_ZENITH_ANGLE': 37.8823876986455, 'MEAN_INCIDENCE_ZENITH_ANGLE_B8A': 8.07209775501352, 'RADIATIVE_TRANSFER_ACCURACY': 0, 'MGRS_TILE': '47QMA', 'CLOUDY_PIXEL_PERCENTAGE': 19.199218, 'PRODUCT_ID': 'S2A_MSIL2A_20211105T034941_N0301_R104_T47QMA_20211105T073547', 'MEAN_INCIDENCE_ZENITH_ANGLE_B10': 7.9404363360067, 'SOLAR_IRRADIANCE_B9': 812.92, 'SNOW_ICE_PERCENTAGE': 0, 'DEGRADED_MSI_DATA_PERCENTAGE': 0, 'MEAN_INCIDENCE_ZENITH_ANGLE_B11': 7.9862472572265, 'MEAN_INCIDENCE_ZENITH_ANGLE_B12': 8.05495961275826, 'SOLAR_IRRADIANCE_B6': 1287.61, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B10': 101.822092865018, 'SOLAR_IRRADIANCE_B5': 1424.64, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B11': 101.742758976789, 'SOLAR_IRRADIANCE_B8': 1041.63, 'MEAN_INCIDENCE_AZIMUTH_ANGLE_B12': 101.69427867813, 'SOLAR_IRRADIANCE_B7': 1162.08, 'SOLAR_IRRADIANCE_B2': 1959.66, 'SOLAR_IRRADIANCE_B1': 1884.69, 'SOLAR_IRRADIANCE_B4': 1512.06, 'GEOMETRIC_QUALITY': 'PASSED', 'SOLAR_IRRADIANCE_B3': 1823.24, 'system:asset_size': 1582426194, 'WATER_PERCENTAGE': 0.07285, 'system:index': '20211105T034941_20211105T035710_T47QMA'
+        }, 'day_of_week': 0, 'system:time_start': 1635724800000, 'google:max_source_file_timestamp': 1636499267000, 'system:time_end': 1635811200000, 'system:asset_size': 764764096, 'system:index': '2021_11_01'
     }
 }
