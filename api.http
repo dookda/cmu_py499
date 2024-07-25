@@ -1,0 +1,6 @@
+POST http://localhost:5100/roofdetect
+Content-Type: application/json
+
+{
+  "bbox": [98.9826,18.78497,98.9905,18.79018]
+}

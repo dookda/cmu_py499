@@ -123,10 +123,7 @@ def tms_to_geotiff(
         SESSION = requests.Session()
 
     if not overwrite and os.path.exists(output):
-        print(
-            f"The output file {
-                output} already exists. Use `overwrite=True` to overwrite it."
-        )
+        print(f"The output file {output} already exists. Use `overwrite=True`")
         return
 
     xyz_tiles = {
@@ -303,10 +300,7 @@ def tms_to_geotiff(
                 bigim = paste_tile(
                     bigim, base_size, fut.result(), corner_xy, bbox)
                 if not quiet:
-                    print(
-                        f"Downloaded image {str(k).zfill(
-                            len(str(totalnum)))}/{totalnum}"
-                    )
+                    print(f" {str(k).zfill(len(str(totalnum)))}/{totalnum}")
 
         if not quiet:
             print("Saving GeoTIFF. Please wait...")
