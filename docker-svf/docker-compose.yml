@@ -5,9 +5,9 @@ services:
     image: postgis/postgis:latest
     container_name: postgis
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
-      POSTGRES_DB: geodb
+      POSTGRES_DB: gsv2svfnewnew
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
     volumes:
@@ -15,14 +15,14 @@ services:
 
   python:
     image: giswqs/segment-geospatial:latest
-    container_name: segment-geospatial
+    container_name: python
     working_dir: /app
     depends_on:
       - postgis
     ports:
-      - "5100:5000"
+      - "5100:5100"
     volumes:
-      - ./geospatial:/app
+      - ./python:/app
     command: /bin/bash -c "pip install -r requirements.txt && python app.py"
 
   nodejs:
