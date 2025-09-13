@@ -1,0 +1,33 @@
+
+CO PREDICTION MODEL RESULTS
+===========================
+
+Dataset Information:
+- Date range: 2023-11-01 00:00:00 to 2024-04-29 00:00:00
+- Number of sensors: 30
+- Total records: 5430
+- Remaining null values after processing: 0
+
+Descriptive Statistics for Daily CO Levels:
+count     181.000000
+unique    181.000000
+top         0.036085
+freq        1.000000
+
+Model Performance Metrics:
+- RMSE: 0.008942
+- MAE: 0.007435
+- R²: 0.491781
+
+7-Day Forecast:
+      Date  CO_Forecast
+2024-04-30     0.061048
+2024-05-01     0.061388
+2024-05-02     0.062012
+2024-05-03     0.062553
+2024-05-04     0.063052
+2024-05-05     0.063539
+2024-05-06     0.064025
+
+Model Architecture:
+None
