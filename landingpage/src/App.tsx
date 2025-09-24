@@ -80,8 +80,8 @@ const App: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15 }}
             >
-              <a href="#projects" className="btn text-base px-7 py-3">View Projects</a>
-              <a href="#contact" className="btn btn-secondary text-base px-7 py-3" aria-label="Scroll to contact CTA">Get In Touch</a>
+              {/* <a href="#projects" className="btn text-base px-7 py-3">View Projects</a>
+              <a href="#contact" className="btn btn-secondary text-base px-7 py-3" aria-label="Scroll to contact CTA">Get In Touch</a> */}
             </motion.div>
           </div>
           <motion.div
@@ -124,8 +124,8 @@ const App: React.FC = () => {
       {/* Projects */}
       <section id="projects" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12">
-            <h2 className="section-title mb-3">Featured <span className="gradient-text">Projects</span></h2>
-            <p className="text-slate-600 dark:text-slate-300 max-w-2xl text-sm">Exactly seven production‑grade experiments & frameworks spanning imagery intelligence, streaming analytics & spatial data infrastructure.</p>
+          <h2 className="section-title mb-3">Featured <span className="gradient-text">Projects</span></h2>
+          <p className="text-slate-600 dark:text-slate-300 max-w-2xl text-sm">Exactly seven production‑grade experiments & frameworks spanning imagery intelligence, streaming analytics & spatial data infrastructure.</p>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6" aria-label="Project list">
           {projects.map((p, i) => (
