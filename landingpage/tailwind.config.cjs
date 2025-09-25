@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif']
+        sans: ['Prompt', 'Inter', 'system-ui', 'sans-serif'],
+        thai: ['Prompt', 'system-ui', 'sans-serif']
       },
       colors: {
         brand: {

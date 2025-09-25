@@ -14,6 +14,10 @@ body {
   @apply font-sans bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100;
 }
 
+.font-thai {
+  font-family: 'Prompt', 'Inter', system-ui, sans-serif;
+}
+
 .focus-outline:focus-visible {
   @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-white dark:ring-offset-slate-900 rounded-md;
 }
@@ -21,15 +25,19 @@ body {
 .btn {
   @apply inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium bg-brand-600 text-white hover:bg-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 active:scale-[0.98] transition shadow-sm dark:ring-offset-slate-950;
 }
+
 .btn-secondary {
   @apply bg-slate-800 hover:bg-slate-700 text-white dark:bg-slate-200 dark:text-slate-900 dark:hover:bg-slate-300;
 }
+
 .btn-outline {
   @apply border border-slate-300 dark:border-slate-600 bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200;
 }
+
 .badge {
   @apply inline-flex items-center rounded-full bg-brand-100 dark:bg-brand-700/30 text-brand-700 dark:text-brand-300 px-2.5 py-0.5 text-xs font-medium tracking-wide;
 }
+
 .section-title {
   @apply text-2xl md:text-3xl font-bold tracking-tight;
 }
@@ -46,10 +54,11 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(56,189,248,0.15), transparent 60%);
+  background: radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.15), transparent 60%);
   opacity: 0;
   transition: opacity .4s;
 }
+
 .card-gradient:hover::before {
   opacity: 1;
 }
