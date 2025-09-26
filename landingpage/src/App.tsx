@@ -65,7 +65,7 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-32 md:py-40 lg:py-48 flex flex-col lg:flex-row items-center gap-14">
           <div className="flex-1">
             <motion.h1
-              className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6 font-thai text-white"
+              className="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tight leading-tight mb-6 font-thai text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
