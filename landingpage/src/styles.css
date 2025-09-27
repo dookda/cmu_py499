@@ -1,9 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   color-scheme: light dark;
+  --bs-primary: #22a4ff;
+  --bs-primary-rgb: 34, 164, 255;
 }
 
 html.dark {
@@ -11,58 +9,234 @@ html.dark {
 }
 
 body {
-  @apply font-sans bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: white;
+  color: #0f172a;
+  line-height: 1.6;
 }
 
+html.dark body {
+  background-color: #000000;
+  color: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Focus outline for accessibility */
+.focus-outline:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #22a4ff, 0 0 0 4px rgba(34, 164, 255, 0.2);
+  border-radius: 0.375rem;
+}
+
+/* Custom fonts */
 .font-thai {
-  font-family: 'Prompt', 'Inter', system-ui, sans-serif;
+  font-family: 'Prompt', system-ui, sans-serif;
+  font-optical-sizing: auto;
 }
 
-.focus-outline:focus-visible {
-  @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-white dark:ring-offset-slate-900 rounded-md;
+.font-display {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.025em;
 }
 
-.btn {
-  @apply inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium bg-brand-600 text-white hover:bg-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 active:scale-[0.98] transition shadow-sm dark:ring-offset-slate-950;
+/* Hero background with responsive image */
+.hero-bg {
+  background-image:
+    linear-gradient(135deg,
+      rgba(15, 23, 42, 0.7) 0%,
+      rgba(30, 41, 59, 0.6) 25%,
+      rgba(51, 65, 85, 0.5) 50%,
+      rgba(30, 41, 59, 0.6) 75%,
+      rgba(15, 23, 42, 0.8) 100%),
+    url('https://images.pexels.com/photos/3094211/pexels-photo-3094211.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  /* Better for mobile */
+  min-height: 100vh;
 }
 
-.btn-secondary {
-  @apply bg-slate-800 hover:bg-slate-700 text-white dark:bg-slate-200 dark:text-slate-900 dark:hover:bg-slate-300;
+/* Hero title responsive sizing */
+.hero-title {
+  font-size: clamp(4rem, 12vw, 12rem);
+  line-height: 0.9;
 }
 
-.btn-outline {
-  @apply border border-slate-300 dark:border-slate-600 bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200;
+/* Dark mode - dimmer background */
+html.dark .hero-bg {
+  background-image:
+    linear-gradient(135deg,
+      rgba(2, 6, 23, 0.85) 0%,
+      rgba(15, 23, 42, 0.8) 25%,
+      rgba(30, 41, 59, 0.75) 50%,
+      rgba(15, 23, 42, 0.8) 75%,
+      rgba(2, 6, 23, 0.9) 100%),
+    url('https://images.pexels.com/photos/3094211/pexels-photo-3094211.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
 }
 
-.badge {
-  @apply inline-flex items-center rounded-full bg-brand-100 dark:bg-brand-700/30 text-brand-700 dark:text-brand-300 px-2.5 py-0.5 text-xs font-medium tracking-wide;
+/* Better mobile background */
+@media (max-width: 768px) {
+  .hero-bg {
+    background-image:
+      linear-gradient(135deg,
+        rgba(15, 23, 42, 0.8) 0%,
+        rgba(30, 41, 59, 0.7) 50%,
+        rgba(15, 23, 42, 0.9) 100%),
+      url('https://images.pexels.com/photos/3094211/pexels-photo-3094211.jpeg?auto=compress&cs=tinysrgb&w=768&h=1024&fit=crop');
+    background-attachment: scroll;
+    min-height: 100vh;
+  }
+
+  /* Dark mode mobile - even dimmer */
+  html.dark .hero-bg {
+    background-image:
+      linear-gradient(135deg,
+        rgba(2, 6, 23, 0.9) 0%,
+        rgba(15, 23, 42, 0.85) 50%,
+        rgba(2, 6, 23, 0.95) 100%),
+      url('https://images.pexels.com/photos/3094211/pexels-photo-3094211.jpeg?auto=compress&cs=tinysrgb&w=768&h=1024&fit=crop');
+  }
 }
 
-.section-title {
-  @apply text-2xl md:text-3xl font-bold tracking-tight;
+/* Theme toggle animation */
+.theme-toggle {
+  transition: all 0.2s ease-in-out;
 }
 
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
+
+/* Brand link styling */
+.brand-link {
+  color: #22a4ff;
+  transition: color 0.2s ease-in-out;
+}
+
+.brand-link:hover {
+  text-decoration: underline;
+}
+
+html.dark .brand-link {
+  color: #60a5fa;
+}
+
+/* Gradient text for GEODEV */
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-500 to-brand-700 dark:from-brand-300 dark:to-brand-500;
+  background: linear-gradient(135deg, #22a4ff 0%, #8b5cf6 50%, #22c55e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
-.card {
-  @apply relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm shadow-sm hover:shadow-md transition;
+html.dark .gradient-text {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #4ade80 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
-.card-gradient::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.15), transparent 60%);
-  opacity: 0;
-  transition: opacity .4s;
+/* Transparent navbar */
+.navbar-transparent {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
 }
 
-.card-gradient:hover::before {
-  opacity: 1;
+html.dark .navbar-transparent {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-footer a {
-  @apply text-brand-600 dark:text-brand-400 hover:underline;
+/* Navbar text colors in dark mode */
+html.dark .navbar-transparent .navbar-brand,
+html.dark .navbar-transparent .nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+html.dark .navbar-transparent .navbar-brand:hover,
+html.dark .navbar-transparent .nav-link:hover {
+  color: #60a5fa !important;
+}
+
+/* Dark mode for Bootstrap components */
+html.dark .card {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+html.dark .card-title {
+  color: #f8fafc !important;
+}
+
+html.dark .card-text {
+  color: #cbd5e1 !important;
+}
+
+html.dark .badge {
+  background-color: #374151 !important;
+  color: #d1d5db !important;
+}
+
+html.dark .bg-light {
+  background-color: #0f172a !important;
+}
+
+html.dark .text-muted {
+  color: #94a3b8 !important;
+}
+
+html.dark .border-top {
+  border-color: #334155 !important;
+}
+
+/* Bootstrap customizations */
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+  background-color: #0a83e5;
+  border-color: #0a83e5;
+}
+
+html.dark .btn-primary {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+html.dark .btn-primary:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: clamp(3rem, 10vw, 6rem) !important;
+    line-height: 1.1;
+  }
+
+  .hero-bg {
+    background-position: center center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(2.5rem, 12vw, 5rem) !important;
+  }
 }

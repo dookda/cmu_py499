@@ -10,51 +10,53 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   return (
-    <motion.article
-      className="card card-gradient p-5 flex flex-col" role="region" aria-labelledby={`${project.id}-title`}
+    <motion.div
+      className="card h-100 shadow-sm"
+      role="region"
+      aria-labelledby={`${project.id}-title`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, delay: index * 0.05 }}
     >
-      <header className="mb-3">
-        <h3 id={`${project.id}-title`} className="font-semibold text-lg tracking-tight text-slate-800 dark:text-slate-100">
-          {project.title}
-        </h3>
-      </header>
-      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 flex-1">
-        {project.description}
-      </p>
-      <ul className="flex flex-wrap gap-2 mb-4" aria-label="technologies">
-        {project.tech.slice(0, 4).map(t => (
-          <li key={t}>
-            <span className="badge" aria-label={t}>{t}</span>
-          </li>
-        ))}
-      </ul>
-      <div className="mt-auto flex flex-wrap gap-3" aria-label="project links">
-        <a
-          href={project.demoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn focus-outline"
-          aria-label={`Open demo for ${project.title}`}
-        >
-          <ExternalLink className="w-4 h-4" aria-hidden="true" /> Demo
-        </a>
-        {project.repoUrl && (
+      <div className="card-body d-flex flex-column">
+        <header className="mb-3">
+          <h3 id={`${project.id}-title`} className="card-title h5 fw-semibold font-thai">
+            {project.title}
+          </h3>
+        </header>
+        <p className="card-text text-muted flex-grow-1 font-thai">
+          {project.description}
+        </p>
+        <div className="d-flex flex-wrap gap-2 mb-3" aria-label="technologies">
+          {project.tech.slice(0, 4).map(t => (
+            <span key={t} className="badge bg-secondary me-1" aria-label={t}>{t}</span>
+          ))}
+        </div>
+        <div className="mt-auto d-flex gap-2" aria-label="project links">
           <a
-            href={project.repoUrl}
+            href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-outline focus-outline"
-            aria-label={`Open repository for ${project.title}`}
+            className="btn btn-primary btn-sm"
+            aria-label={`Open demo for ${project.title}`}
           >
-            <Github className="w-4 h-4" aria-hidden="true" /> Repo
+            <ExternalLink size={16} aria-hidden="true" /> Demo
           </a>
-        )}
+          {project.repoUrl && (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline-secondary btn-sm"
+              aria-label={`Open repository for ${project.title}`}
+            >
+              <Github size={16} aria-hidden="true" /> Repo
+            </a>
+          )}
+        </div>
       </div>
-    </motion.article>
+    </motion.div>
   );
 };
 
