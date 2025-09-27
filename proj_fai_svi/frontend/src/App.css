@@ -1,0 +1,141 @@
+/* Global + Hero + Navbar */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Source Serif 4", serif;
+  height: 100%;
+  scroll-behavior: smooth;
+  background: #000;
+  color: #fff;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  background: black;
+  color: white;
+}
+
+.map-section {
+  background-color: #000;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* overlay */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+/* navbar */
+.navbar {
+  display: flex;
+  padding: 20px 40px;
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.social-icons a {
+  color: white;
+  margin-right: 15px;
+  font-size: 1.2rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* hero content */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 80px;
+  transform: translateY(-50%);
+  z-index: 1;
+  max-width: 600px;
+  text-align: left;
+}
+
+.content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 0 0 10px #ff494e, 0 0 20px #ff494e, 0 0 30px #ff494e;
+}
+
+.content p {
+  font-size: 1.2rem;
+  margin: 0 auto 30px;
+}
+
+.content button {
+  background-color: #be0005;
+  color: #200d01;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* video card */
+.video-card {
+  background-color: #2a2a2a;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 600px;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+  margin-left: auto;
+  margin-right: 70px;
+  margin-top: 80px;
+}
+
+.video-wrapper video {
+  width: 100%;
+  border-radius: 8px;
+  filter: brightness(1.2) contrast(1.1);
+  box-shadow: 0 0 8px #ff1117;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .video-card {
+    margin: 40px 0 0 0;
+    max-width: 100%;
+  }
+
+  .content {
+    text-align: center;
+  }
+
+  .video-wrapper video {
+    border-radius: 0;
+  }
+}

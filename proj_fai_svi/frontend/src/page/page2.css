@@ -1,0 +1,70 @@
+.page2-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #0a0a0a;
+  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+.map-section {
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+}
+
+.map-container {
+  height: 100vh;
+  width: 100%;
+}
+
+.info-section {
+  flex: 1;
+  background: #111;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.info-section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #00ffcc;
+}
+
+.btn-fetch {
+  padding: 10px 15px;
+  background: #00b894;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-fetch:hover {
+  background: #019875;
+}
+
+.info-card {
+  background: #1c1c1c;
+  padding: 15px;
+  border-radius: 8px;
+  line-height: 1.6;
+  border-left: 4px solid #7adbac;
+}
+
+.info-card.highlight {
+  border-left-color: #e3241f;
+  background: #2d1f1f;
+}
+
+.info-card.error {
+  border-left-color: #d63031;
+  background: #2a1b1b;
+}
