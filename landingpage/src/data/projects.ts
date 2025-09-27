@@ -60,8 +60,8 @@ export const projects: Project[] = [
   },
   {
     id: 'environmental-analysis',
-    title: 'การวิเคราะห์ข้อมูลสิ่งแวดล้อม',
-    description: 'งานวิจัยการวิเคราะห์คุณภาพอากาศ (PM10, PM2.5) ด้วยวิธีทางสำหรับสถิติ การทดสอบ ANOVA และการหาความสัมพันธ์เชิงพื้นที่และเวลา',
+    title: 'การสกัดหุบเมืองกับข้อมูลคุณภาพอากาศ',
+    description: 'งานวิจัยการวิเคราะห์ street canyon กับคุณภาพอากาศ (PM10, PM2.5) ด้วยวิธีทางสำหรับสถิติ การทดสอบ ANOVA และการหาความสัมพันธ์เชิงพื้นที่และเวลา',
     tech: ['Environmental Science', 'ANOVA', 'Time Series', 'Statistics'],
     demoUrl: '/usc/'
   },
