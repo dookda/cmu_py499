@@ -30,3 +30,5 @@ package-lock.json
 .vscode/*
 !.vscode/extensions.json
 proj_fai_svi/postgis/db.sql
+
+proj_jan_usc/python/best_mAP50.pt
