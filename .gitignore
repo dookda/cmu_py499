@@ -29,3 +29,4 @@ package-lock.json
 .idea/
 .vscode/*
 !.vscode/extensions.json
+proj_fai_svi/postgis/db.sql
