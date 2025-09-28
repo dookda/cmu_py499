@@ -38,32 +38,40 @@ const map = new maplibregl.Map({
     style: `https://api.maptiler.com/maps/streets/style.json?key=${API_KEY}`,
     center: [98.9853, 18.7883],
     zoom: 12,
-    pitch: 45,
+    pitch: 60,
     bearing: -17,
 });
-map.addControl(new maplibregl.NavigationControl(), "top-left");
+map.addControl(new maplibregl.NavigationControl({ showCompass: true }), "top-left");
 
 // ✅ ฟังก์ชันโหลดเลเยอร์
 function loadHexLayer(url, layerId, isOverview = false) {
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            if (map.getSource(layerId)) {
+            // ลบ Source และ Layer เดิมถ้ามี
+            if (map.getLayer(`${layerId}-3d`)) {
+                map.removeLayer(`${layerId}-3d`);
+            }
+            if (map.getLayer(layerId)) {
                 map.removeLayer(layerId);
+            }
+            if (map.getSource(layerId)) {
                 map.removeSource(layerId);
             }
+
+            // เพิ่ม Source
             map.addSource(layerId, { type: "geojson", data });
 
+            // เพิ่มเลเยอร์ 2D (fill)
             map.addLayer({
                 id: layerId,
                 type: "fill",
                 source: layerId,
                 layout: {
-                    visibility: (layerId === "CONF" ? "visible" : "none")
+                    visibility: layerId === "CONF" ? "visible" : "none"
                 },
                 paint: isOverview
                     ? {
-                        // ✅ ภาพรวมเหมือนเดิม
                         "fill-color": [
                             "match", ["get", "majority_c"],
                             "TRN", CATEGORY_LIGHT.TRN,
@@ -73,17 +81,16 @@ function loadHexLayer(url, layerId, isOverview = false) {
                             "PSG", CATEGORY_LIGHT.PSG,
                             "HLT", CATEGORY_LIGHT.HLT,
                             "RES", CATEGORY_LIGHT.RES,
-                            "transparent"   // ถ้าไม่เจอค่า → โปร่งใส
+                            "transparent"
                         ],
                         "fill-opacity": 0.35,
                         "fill-outline-color": "#555",
                     }
                     : {
-                        // ✅ เลเยอร์ย่อย: ใช้ MEAN แต่โปร่งใสถ้าไม่มีค่า
                         "fill-color": [
                             "case",
-                            ["!", ["has", "MEAN"]], "transparent",   // ถ้าไม่มี field → โปร่งใส
-                            ["==", ["get", "MEAN"], 0], "transparent", // ถ้า MEAN = 0 → โปร่งใส
+                            ["!", ["has", "MEAN"]], "transparent",
+                            ["==", ["get", "MEAN"], 0], "transparent",
                             [
                                 "interpolate", ["linear"], ["get", "MEAN"],
                                 0, "#ffffcc",
@@ -99,6 +106,77 @@ function loadHexLayer(url, layerId, isOverview = false) {
                     }
             });
 
+            // เพิ่มเลเยอร์ 3D (fill-extrusion) สำหรับเลเยอร์ที่ไม่ใช่ภาพรวม
+            if (!isOverview) {
+                map.addLayer({
+                    id: `${layerId}-3d`,
+                    type: "fill-extrusion",
+                    source: layerId,
+                    layout: {
+                        visibility: layerId === "CONF" ? "none" : "visible"
+                    },
+                    paint: {
+                        "fill-extrusion-color": [
+                            "case",
+                            ["!", ["has", "MEAN"]], "transparent",
+                            ["==", ["get", "MEAN"], 0], "transparent",
+                            [
+                                "interpolate", ["linear"], ["get", "MEAN"],
+                                0, "#ffffcc",
+                                65, "#ffeda0",
+                                110, "#feb24c",
+                                170, "#fd8d3c",
+                                265, "#f03b20",
+                                423, "#bd0026"
+                            ]
+                        ],
+                        "fill-extrusion-height": [
+                            "case",
+                            ["!", ["has", "MEAN"]], 0,
+                            ["==", ["get", "MEAN"], 0], 0,
+                            [
+                                "interpolate", ["linear"], ["get", "MEAN"],
+                                0, 0,
+                                65, 200,
+                                110, 400,
+                                170, 600,
+                                265, 800,
+                                423, 1000
+                            ]
+                        ],
+                        "fill-extrusion-base": 0,
+                        "fill-extrusion-opacity": 0.75,
+                        "fill-extrusion-vertical-gradient": true
+                    }
+                });
+
+                // ปรับแสงเพื่อให้ 3D ชัดเจน
+                map.setLight({
+                    anchor: "viewport",
+                    position: [1.5, 210, 30],
+                    intensity: 0.5
+                });
+
+                // ✅ Popup สำหรับเลเยอร์ 3D
+                map.on("click", `${layerId}-3d`, (e) => {
+                    const p = e.features[0].properties;
+                    if (!p || !p.MEAN || p.MEAN === 0) {
+                        new maplibregl.Popup()
+                            .setLngLat(e.lngLat)
+                            .setHTML(`<b>ไม่มีข้อมูล</b>`)
+                            .addTo(map);
+                        return;
+                    }
+
+                    new maplibregl.Popup()
+                        .setLngLat(e.lngLat)
+                        .setHTML(`
+                            <b>ประเภท:</b> ${SERVICE_LABELS[layerId] || layerId}<br>
+                            <b>ค่า MEAN:</b> ${p.MEAN}
+                        `)
+                        .addTo(map);
+                });
+            }
 
             // ✅ Popup เฉพาะ "ภาพรวม"
             if (isOverview) {
@@ -143,11 +221,43 @@ const LAYER_CONFIG = {
     RES: { url: "/svi_api/hexagons/res", isOverview: false },
 };
 
-// ✅ โหลดทุกเลเยอร์ แต่ซ่อนหมด ยกเว้น CONF
+// ✅ โหลดทุกเลเยอร์และเริ่มหมุนกล้องอัตโนมัติ
 map.on("load", () => {
     Object.entries(LAYER_CONFIG).forEach(([id, cfg]) => {
         loadHexLayer(cfg.url, id, cfg.isOverview);
     });
+
+    // ✅ เพิ่มปุ่มสำหรับสั่งหมุนกล้อง
+    const orbitButton = document.createElement("button");
+    orbitButton.innerHTML = `<i class="fa-solid fa-globe"></i> หยุดหมุน`;
+    orbitButton.className = "maplibregl-ctrl maplibregl-ctrl-orbit";
+    orbitButton.style.padding = "5px 10px";
+    orbitButton.style.margin = "5px";
+    orbitButton.style.cursor = "pointer";
+    document.querySelector(".maplibregl-ctrl-top-left").appendChild(orbitButton);
+
+    let isOrbiting = true; // เริ่มหมุนอัตโนมัติ
+    orbitButton.onclick = () => {
+        isOrbiting = !isOrbiting;
+        orbitButton.textContent = isOrbiting ? "หยุดหมุน" : "หมุนกล้อง";
+    };
+
+    const center = [98.9853, 18.7883]; // ศูนย์กลางแผนที่
+    let bearing = map.getBearing();
+    const zoom = 12;
+    const pitch = 60;
+
+    function animate() {
+        if (!isOrbiting) return;
+        bearing += 0.3; // ชะลอความเร็วการหมุน (จาก 1 เป็น 0.3 องศาต่อเฟรม)
+        map.setBearing(bearing);
+        map.setCenter(center);
+        map.setZoom(zoom);
+        map.setPitch(pitch);
+        requestAnimationFrame(animate);
+    }
+
+    animate(); // เริ่ม animation ทันที
 });
 
 // ✅ function เปิดเลเยอร์เดียว
@@ -155,6 +265,9 @@ function setActiveLayer(activeId) {
     Object.keys(LAYER_CONFIG).forEach(id => {
         if (map.getLayer(id)) {
             map.setLayoutProperty(id, "visibility", id === activeId ? "visible" : "none");
+        }
+        if (map.getLayer(`${id}-3d`)) {
+            map.setLayoutProperty(`${id}-3d`, "visibility", id === activeId ? "visible" : "none");
         }
     });
 }
@@ -200,6 +313,11 @@ class BasemapControl {
                     setTimeout(() => {
                         const checked = document.querySelector("input[name='layer']:checked");
                         if (checked) setActiveLayer(checked.value);
+
+                        // เริ่มหมุนกล้องใหม่หลังเปลี่ยน basemap
+                        isOrbiting = true;
+                        orbitButton.textContent = "หยุดหมุน";
+                        animate();
                     }, 500);
                 });
 

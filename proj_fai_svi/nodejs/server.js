@@ -4,7 +4,7 @@ const app = express();
 const port = 3000;
 
 // ให้ express เสิร์ฟไฟล์ static (index.html ฯลฯ) จากโฟลเดอร์ www
-app.use("/", express.static("www"));
+app.use("/svi", express.static("www"));
 
 // ===========================
 //  ตั้งค่า PostgreSQL
@@ -76,13 +76,38 @@ app.get("/svi_api/entry_points", async (req, res) => {
 });
 
 // detections_matched_all (point)
-app.get("/svi_api/detections", async (req, res) => {
-  try {
-    res.json(await queryGeoJSON("detections_matched_all", true));
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("DB error");
-  }
+// app.get("/svi_api/detections", async (req, res) => {
+//   try {
+//     res.json(await queryGeoJSON("detections_matched_all", true));
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("DB error");
+//   }
+// });
+
+app.get('/svi/api/detections', (req, res) => {
+  //create geojson data from class_and_pollution table and select id column only
+  const sql = `SELECT jsonb_build_object(
+                'type', 'FeatureCollection',
+                'features', jsonb_agg(features.feature)
+        ) AS geojson
+        FROM (
+                SELECT jsonb_build_object(
+                        'type', 'Feature',
+                        'id', id,
+                        'geometry', ST_AsGeoJSON(geom)::jsonb,
+                        'properties', to_jsonb(inputs) -- 'geom'
+                ) AS feature
+                FROM (SELECT id, lat_adj, lon_adj, label, conf, heading, geom FROM detections_matched_all) inputs
+        ) features;`;
+  pool.query(sql, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Database query error' });
+    } else {
+      res.json(result.rows[0].geojson);
+    }
+  });
 });
 
 // Hexagon layers
