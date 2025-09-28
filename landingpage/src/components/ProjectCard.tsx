@@ -38,17 +38,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           >
             <ExternalLink size={16} aria-hidden="true" /> Demo
           </a>
-          {project.repoUrl && (
-            <a
-              href={project.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-outline-secondary btn-sm"
-              aria-label={`Open repository for ${project.title}`}
-            >
-              <Github size={16} aria-hidden="true" /> Repo
-            </a>
-          )}
         </div>
       </div>
     </motion.div>
