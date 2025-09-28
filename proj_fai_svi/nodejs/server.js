@@ -11,10 +11,10 @@ app.use("/", express.static("www"));
 // ===========================
 const pool = new Pool({
   user: "postgres",
-  host: "localhost",
+  host: "postgis",
   database: "Project499",
   password: "1234",   // เปลี่ยนเป็นรหัสจริง
-  port: 5433          // ตรวจสอบ port
+  port: 5432          // ตรวจสอบ port
 });
 
 // ===========================

@@ -1,9 +1,9 @@
 services:
   postgis:
     image: postgis/postgis:latest
-    container_name: postgis
+    container_name: svi_postgis
     ports:
-      - "5433:5432"
+      - "6508:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
