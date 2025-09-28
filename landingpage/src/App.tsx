@@ -73,7 +73,7 @@ const App: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
               >
-                วิจัยเล่มเล็กของเด็กจีออ
+                {/* วิจัยเล่มเล็กของเด็กจีออ */}
               </motion.p>
               <motion.div
                 className="d-flex flex-wrap justify-content-center gap-3"
@@ -81,7 +81,7 @@ const App: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
               >
-                <a href="#projects" className="btn btn-primary btn font-thai">Projects</a>
+                {/* <a href="#projects" className="btn btn-primary btn font-thai">Projects</a> */}
               </motion.div>
             </div>
           </div>
@@ -97,7 +97,7 @@ const App: React.FC = () => {
                 การค้นคว้าอิสระ<span className="gradient-text">เชิงภูมิศาสตร์</span>
               </h4>
               <p className={`lead ${dark ? 'text-light' : 'text-muted'} font-thai`}>
-                ระบบฐานข้อมูล การประมวลผลภาพ ปัญญาประดิษฐ์ และการวิเคราะห์ข้อมูลเชิงพื้นที่
+                วิจัยเล่มเล็กของเด็กจีออ ระบบฐานข้อมูล การประมวลผลภาพ ปัญญาประดิษฐ์ และการวิเคราะห์ข้อมูลเชิงพื้นที่
               </p>
             </div>
           </div>

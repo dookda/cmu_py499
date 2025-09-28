@@ -11,7 +11,7 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   return (
     <motion.div
-      className="card h-100 shadow-sm"
+      className="card h-100 card-transparent"
       role="region"
       aria-labelledby={`${project.id}-title`}
       initial={{ opacity: 0, y: 30 }}
@@ -28,11 +28,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
         <p className="card-text text-muted flex-grow-1 font-thai">
           {project.description}
         </p>
-        <div className="d-flex flex-wrap gap-2 mb-3" aria-label="technologies">
-          {project.tech.slice(0, 4).map(t => (
-            <span key={t} className="badge bg-secondary me-1" aria-label={t}>{t}</span>
-          ))}
-        </div>
         <div className="mt-auto d-flex gap-2" aria-label="project links">
           <a
             href={project.demoUrl}

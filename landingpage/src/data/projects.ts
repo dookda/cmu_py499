@@ -11,14 +11,14 @@ export const projects: Project[] = [
   {
     id: 'gsv-skyview',
     title: 'การวิเคราะห์ Sky View Factor จาก Google Street View',
-    description: 'การวิจัยระดับปริญญาตรีที่ใช้ปัญญาประดิษฐ์ในการวิเคราะห์ภาพจาก Google Street View เพื่อคำนวณค่า Sky View Factor สำหรับการวางแผนเมือง',
+    description: 'ใช้ AI วิเคราะห์ภาพ Google Street View เพื่อคำนวณ Sky View Factor สำหรับการวางแผนเมือง',
     tech: ['YOLO8', 'Flask', 'Computer Vision', 'OpenCV'],
     demoUrl: '/gsv/'
   },
   {
     id: 'roof-detection',
     title: 'ระบบตรวจจับหลังคาอาคารจากภาพดาวเทียม',
-    description: 'การนักศึกษาที่พัฒนาระบบ AI สำหรับการตรวจจับและแบ่งส่วนหลังคาอาคารจากภาพดาวเทียม โดยใช้เทคโนโลยี YOLO และการประมวลผลภาพเชิงพื้นที่',
+    description: 'ระบบ AI ตรวจจับหลังคาอาคารจากภาพดาวเทียมด้วย YOLO และการประมวลผลภาพเชิงพื้นที่',
     tech: ['YOLO9/10', 'Satellite Imagery', 'Segmentation', 'GeoTIFF'],
     demoUrl: '/rdt/',
     repoUrl: '/proj_joam_roof_detection/YOLO9_segmentation.ipynb'
@@ -26,56 +26,56 @@ export const projects: Project[] = [
   {
     id: 'iot-sound-mapping',
     title: 'การทำแผนที่เสียงจาก IoT',
-    description: 'การพัฒนาระบบแผนที่เสียงแบบเรียลไทม์โดยใช้เครือข่าย IoT sensors วัดระดับเสียงในพื้นที่ต่างๆ เพื่อสร้างแผนที่มลพิษทางเสียงสำหรับการวางแผนเมือง',
+    description: 'ระบบแผนที่เสียงแบบเรียลไทม์ด้วย IoT sensors เพื่อสร้างแผนที่มลพิษทางเสียงสำหรับวางแผนเมือง',
     tech: ['IoT', 'Sound Mapping', 'Real-time Data', 'WebSocket'],
     demoUrl: '/sss/'
   },
   {
     id: 'sam-segmentation',
     title: 'การแบ่งส่วนวัตถุด้วยโมเดล SAM',
-    description: 'การนำโมเดล Segment Anything Model (SAM) มาประยุกต์ใช้ในการแบ่งส่วนวัตถุในภาพ พร้อมระบบประเมินผลแบบ COCO และเทคนิคคอมพิวเตอร์วิชัน',
+    description: 'ประยุกต์โมเดล SAM ในการแบ่งส่วนวัตถุในภาพ พร้อมระบบประเมินผล COCO',
     tech: ['SAM', 'Object Segmentation', 'COCO Dataset', 'PyTorch'],
     demoUrl: '/meji/'
   },
   {
     id: 'air-quality-cctv',
     title: 'การทำนายคุณภาพอากาศจากการจราจร',
-    description: 'ระบบวิเคราะห์คุณภาพอากาศโดยใช้ข้อมูลการจราจรและปริมาณรถยนต์จากกล้อง CCTV ร่วมกับเทคนิค Computer Vision เพื่อประเมินระดับมลพิษทางอากาศ',
+    description: 'วิเคราะห์คุณภาพอากาศจากข้อมูลการจราจรและ CCTV ด้วย Computer Vision',
     tech: ['Computer Vision', 'CCTV Analytics', 'Air Quality', 'Deep Learning'],
     demoUrl: '/rsn/'
   },
   {
     id: 'urban-classification',
     title: 'การจำแนก "ย่าน" ของเมืองด้วย Deep Learning',
-    description: 'การประยุกต์ใช้เทคโนโลยี Deep Learning ในการจำแนกประเภทพื้นที่เมืองจาก Google Street View เพื่อช่วยในการวางแผนและพัฒนาเมือง',
+    description: 'ใช้ Deep Learning จำแนกประเภทย่านเมืองจาก Google Street View เพื่อวางแผนพัฒนาเมือง',
     tech: ['Deep Learning', 'Urban Planning', 'Classification', 'Satellite Data'],
     demoUrl: '/svi/'
   },
   {
     id: 'sentiment-analysis',
     title: 'การวิเคราะห์ความรู้สึกจากข้อความ',
-    description: 'การประมวลผลภาษาธรรมชาติ ที่พัฒนาระบบวิเคราะห์ความรู้สึกและอารมณ์จากข้อความใน Twitter โดยใช้เทคนิค Machine Learning',
+    description: 'ระบบวิเคราะห์ความรู้สึกและอารมณ์จากข้อความ Twitter ด้วย NLP และ Machine Learning',
     tech: ['NLP', 'Twitter API', 'SQLite', 'Sentiment Analysis'],
     demoUrl: '/sgi/'
   },
   {
     id: 'environmental-analysis',
     title: 'การสกัดหุบเมืองกับข้อมูลคุณภาพอากาศ',
-    description: 'การวิเคราะห์ street canyon กับคุณภาพอากาศ (PM10, PM2.5) ด้วยวิธีทางสำหรับสถิติ การทดสอบ ANOVA และการหาความสัมพันธ์เชิงพื้นที่และเวลา',
+    description: 'วิเคราะห์ street canyon กับคุณภาพอากาศ PM10, PM2.5 ด้วยสถิติ ANOVA และความสัมพันธ์เชิงพื้นที่',
     tech: ['Environmental Science', 'ANOVA', 'Time Series', 'Statistics'],
     demoUrl: '/usc/'
   },
   {
     id: 'air-quality-prediction',
     title: 'การพยากรณ์คุณภาพอากาศด้วย LSTM',
-    description: 'การที่ใช้เครือข่ายประสาทเทียม LSTM ในการพยากรณ์คุณภาพอากาศ โดยเฉพาะค่าความเข้มข้นของ CO และ NO2 ในเขตเมืองและชนบท',
+    description: 'ใช้โครงข่ายประสาท LSTM พยากรณ์คุณภาพอากาศ CO และ NO2 ในเขตเมืองและชนบท',
     tech: ['LSTM', 'Time Series', 'Air Quality', 'TensorFlow'],
     demoUrl: '/snn/'
   },
   {
     id: 'urban-temperature-prediction',
     title: 'การทำนายอุณหภูมิของเมืองจาก Google Traffic',
-    description: 'การวิจัยที่ใช้ข้อมูลการจราจรจาก Google Traffic API ในการสร้างแบบจำลองทำนายอุณหภูมิเมือง เพื่อศึกษาผลกระทบของการจราจรต่อปรากฏการณ์เกาะความร้อนในเมือง',
+    description: 'ใช้ข้อมูล Google Traffic API สร้างแบบจำลองทำนายอุณหภูมิเมืองและเกาะความร้อน',
     tech: ['Google API', 'Machine Learning', 'Urban Heat', 'Regression'],
     demoUrl: '/pnp/'
   }
