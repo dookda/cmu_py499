@@ -1,4 +1,3 @@
-version: "3.9"
 
 services:
   python:
@@ -8,7 +7,7 @@ services:
     ports:
       - "6515:6515" # ✅ ใช้พอร์ตเดียวกับ FastAPI (6515)
     volumes:
-      - ./backend:/app
+      - ./python:/app
     command: /bin/bash -c "pip install --no-cache-dir -r requirements.txt && uvicorn app:app --host 0.0.0.0 --port 6515 --reload"
 
   nodejs:
@@ -18,5 +17,5 @@ services:
     ports:
       - "6514:3000"
     volumes:
-      - ./frontend:/app
+      - ./nodejs:/app
     command: /bin/bash -c "npm install && npm i -g nodemon && nodemon"

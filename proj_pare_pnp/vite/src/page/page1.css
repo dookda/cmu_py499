@@ -1,0 +1,23 @@
+.container {
+  height: 100vh;
+  width: 80%;
+  margin: 50;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+}
+
+.left-map {
+  flex: 0;
+  height: 100%;
+  padding: 100px;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 0px;
+  margin: 20;
+  padding: 20;
+  overflow: hidden;
+}

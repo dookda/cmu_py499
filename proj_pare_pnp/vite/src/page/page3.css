@@ -1,0 +1,59 @@
+.page3-container {
+  display: flex;
+  height: 90vh;
+  width: 90vw;
+  background: #111;
+  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.info-panel {
+  flex: 1;
+  padding: 40px;
+  height: 100vh;
+  box-sizing: border-box;
+  /* overflow-y: auto; */
+  /* background: #1a1a1a; */
+  /* border-right: 2px solid #333; */
+}
+
+.info-panel h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #00ffcc;
+}
+
+.fetch-time {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #aaa;
+}
+
+.station-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.station-table th,
+.station-table td {
+  border: 1px solid #333;
+  padding: 6px;
+  text-align: center;
+}
+
+.station-table th {
+  background: #222;
+  color: #00ffcc;
+}
+
+.map-section {
+  flex: 1;
+  position: relative;
+  height: 70vh;
+}
+
+.map-container {
+  height: 70vh;
+  width: 100%;
+}
